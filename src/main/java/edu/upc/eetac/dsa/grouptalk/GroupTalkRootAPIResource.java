@@ -1,5 +1,6 @@
 package edu.upc.eetac.dsa.grouptalk;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import edu.upc.eetac.dsa.grouptalk.entity.GroupTalkRootAPI;
 
 import javax.ws.rs.GET;
@@ -7,6 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.SecurityContext;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GroupTalkRootAPIResource
 {
     @Context

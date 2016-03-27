@@ -1,5 +1,9 @@
 package edu.upc.eetac.dsa.grouptalk.dao;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public interface AuthTokenDAOQuery
 {
     public final static String UUID = "select REPLACE(UUID(),'-','')";

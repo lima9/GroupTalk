@@ -1,5 +1,6 @@
 package edu.upc.eetac.dsa.grouptalk.dao;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import edu.upc.eetac.dsa.grouptalk.auth.UserInfo;
 import edu.upc.eetac.dsa.grouptalk.entity.AuthToken;
 import edu.upc.eetac.dsa.grouptalk.entity.Role;
@@ -9,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class AuthTokenDaoImpl implements AuthTokenDao
 {
     @Override

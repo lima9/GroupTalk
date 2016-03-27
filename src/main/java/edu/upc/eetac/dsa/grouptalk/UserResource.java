@@ -1,6 +1,7 @@
 package edu.upc.eetac.dsa.grouptalk;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import edu.upc.eetac.dsa.grouptalk.dao.AuthTokenDaoImpl;
 import edu.upc.eetac.dsa.grouptalk.dao.UserAlreadyExistsException;
 import edu.upc.eetac.dsa.grouptalk.dao.UserDao;
@@ -15,6 +16,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Path("users")
 public class UserResource
 {

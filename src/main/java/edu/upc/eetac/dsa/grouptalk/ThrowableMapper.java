@@ -1,11 +1,13 @@
 package edu.upc.eetac.dsa.grouptalk;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import edu.upc.eetac.dsa.grouptalk.entity.GroupTalkError;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ThrowableMapper implements ExceptionMapper<Throwable> {
     @Override
     public Response toResponse(Throwable throwable) {

@@ -1,12 +1,12 @@
 package edu.upc.eetac.dsa.grouptalk.dao;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import edu.upc.eetac.dsa.grouptalk.entity.Theme;
+import edu.upc.eetac.dsa.grouptalk.entity.ThemeCollection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ThemeDaoImpl implements ThemeDao
 {
 
@@ -141,4 +141,43 @@ public class ThemeDaoImpl implements ThemeDao
         }
     }
 
+    @Override
+    public ThemeCollection getThemes(long timestamp, boolean before) throws SQLException {
+        ThemeCollection themeCollection = new ThemeCollection();
+
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        try {
+            connection = Database.getConnection();
+
+            if(before)
+                stmt = connection.prepareStatement(ThemeDAOQuery.GET_THEMES);
+            else
+                stmt = connection.prepareStatement(ThemeDAOQuery.GET_THEMES_AFTER);
+            stmt.setTimestamp(1, new Timestamp(timestamp));
+
+            ResultSet rs = stmt.executeQuery();
+            boolean first = true;
+            while (rs.next()) {
+                Theme theme = new Theme();
+                theme.setId(rs.getString("id"));
+                theme.setUserid(rs.getString("userid"));
+                theme.setContent(rs.getString("content"));
+                theme.setCreationTimestamp(rs.getTimestamp("creation_timestamp").getTime());
+                theme.setLastModified(rs.getTimestamp("last_modified").getTime());
+                if (first) {
+                    themeCollection.setNewestTimestamp(theme.getLastModified());
+                    first = false;
+                }
+                themeCollection.setOldestTimestamp(theme.getLastModified());
+                themeCollection.getThemes().add(theme);
+            }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            if (stmt != null) stmt.close();
+            if (connection != null) connection.close();
+        }
+        return themeCollection;
+    }
 }

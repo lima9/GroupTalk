@@ -1,11 +1,13 @@
 package edu.upc.eetac.dsa.grouptalk.auth;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import edu.upc.eetac.dsa.grouptalk.entity.Role;
 
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserInfo implements Principal
 {
     @Override

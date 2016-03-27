@@ -1,12 +1,16 @@
 package edu.upc.eetac.dsa.grouptalk.dao;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import edu.upc.eetac.dsa.grouptalk.entity.Group;
+import edu.upc.eetac.dsa.grouptalk.entity.GroupCollection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GroupDaoImpl implements GroupDao {
 
     @Override
@@ -112,6 +116,11 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     @Override
+    public GroupCollection getGroups(String groupid) throws SQLException {
+        return null;
+    }
+
+    @Override
     public boolean deleteGroup(String groupid) throws SQLException {
 
         Connection connection = null;
@@ -131,4 +140,6 @@ public class GroupDaoImpl implements GroupDao {
             if (connection != null) connection.close();
         }
     }
+
+
 }

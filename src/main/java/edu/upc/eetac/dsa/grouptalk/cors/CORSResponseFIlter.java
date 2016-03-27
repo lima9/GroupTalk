@@ -1,11 +1,14 @@
 package edu.upc.eetac.dsa.grouptalk.cors;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 import java.io.IOException;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CORSResponseFIlter implements ContainerResponseFilter
 {
 

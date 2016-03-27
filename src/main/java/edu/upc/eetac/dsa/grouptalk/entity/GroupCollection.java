@@ -1,9 +1,12 @@
 package edu.upc.eetac.dsa.grouptalk.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.ws.rs.core.Link;
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GroupCollection
 {
     private List<Link> links;

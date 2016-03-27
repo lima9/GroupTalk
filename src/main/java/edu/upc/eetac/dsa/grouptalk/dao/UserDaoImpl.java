@@ -1,5 +1,6 @@
 package edu.upc.eetac.dsa.grouptalk.dao;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import edu.upc.eetac.dsa.grouptalk.entity.User;
 
 import java.math.BigInteger;
@@ -10,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDaoImpl implements UserDao
 {
     @Override

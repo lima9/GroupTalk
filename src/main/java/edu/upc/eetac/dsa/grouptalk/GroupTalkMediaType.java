@@ -1,5 +1,8 @@
 package edu.upc.eetac.dsa.grouptalk;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class GroupTalkMediaType
 {
     public final static String GROUPTALK_AUTH_TOKEN = "application/vnd.dsa.grouptalk.auth-token+json";
