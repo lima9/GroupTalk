@@ -12,6 +12,6 @@ public interface GroupDao
     Group createGroup(String name) throws SQLException;
     Group updateGroup(String groupid, String name) throws SQLException;
     Group getGroupById(String groupid) throws SQLException;
-    GroupCollection getGroups(String groupid) throws SQLException;
+    GroupCollection getGroups() throws SQLException;
     boolean deleteGroup(String groupid) throws SQLException;
 }

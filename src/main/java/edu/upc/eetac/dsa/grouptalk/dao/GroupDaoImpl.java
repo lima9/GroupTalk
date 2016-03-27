@@ -116,8 +116,37 @@ public class GroupDaoImpl implements GroupDao {
     }
 
     @Override
-    public GroupCollection getGroups(String groupid) throws SQLException {
-        return null;
+    public GroupCollection getGroups() throws SQLException
+    {
+        GroupCollection groupCollection = new GroupCollection();
+
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        try
+        {
+            connection = Database.getConnection();
+
+            stmt = connection.prepareStatement(GroupDAOQuery.GET_GROUPS);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next())
+            {
+                Group group = new Group();
+                group.setId(rs.getString("id"));
+                group.setName(rs.getString("name"));
+                groupCollection.getGroups().add(group);
+            }
+        }
+        catch (SQLException e)
+        {
+            throw e;
+        }
+        finally
+        {
+            if (stmt != null) stmt.close();
+            if (connection != null) connection.close();
+        }
+        return groupCollection;
     }
 
     @Override

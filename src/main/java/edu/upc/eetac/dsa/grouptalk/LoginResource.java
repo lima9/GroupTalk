@@ -50,6 +50,7 @@ public class LoginResource
     }
 
     @DELETE
+    @RolesAllowed("[admin.registered]")
     public void logout(){
         String userid = securityContext.getUserPrincipal().getName();
         AuthTokenDao authTokenDAO = new AuthTokenDaoImpl();
